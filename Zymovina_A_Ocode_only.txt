@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int count = 0;
+int digits[] = {5, 6, 7, 8, 9};
+
+void generate(int pos, int r, int last1, int last2) {
+    if (pos == r) {
+        count++;
+        return;
+    }
+    for (int i = 0; i < 5; i++) {
+        int d = digits[i];
+        if (pos >= 2 && d == last1 && d == last2) continue;
+        generate(pos + 1, r, d, last1);
+    }
+}
+
+int main() {
+    int r;
+    scanf("%d", &r);
+    generate(0, r, -1, -1);
+    printf("%d\n", count);
+    return 0;
+}
